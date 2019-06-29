@@ -1,0 +1,38 @@
+.home
+  // Шапка страницы
+  el-row(type="flex" align="middle")
+    el-col(:span="16")
+      h1 {{ $route.name }}
+    el-col(:span="8")
+      .button-wrap
+        el-button(
+        type="primary"
+        size="small"
+        @click="pushRoute('/organizations/new')"
+        ) Добавить организацию
+
+  // Таблица списка организаций
+  el-table(
+  :data="organizationList"
+  )
+    el-table-column(
+    type="index"
+    label="#"
+    width="50px"
+    )
+
+    el-table-column(
+    label="Название"
+    )
+      template(slot-scope="scope")
+        p {{ scope.row.title }}
+
+    el-table-column(
+    label="Действия"
+    align="right"
+    )
+      template(slot-scope="scope")
+        el-button(
+        size="mini"
+        @click="pushRoute(`/organizations/${scope.row.id}`)"
+        ) Редактировать

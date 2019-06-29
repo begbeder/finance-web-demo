@@ -1,0 +1,12 @@
+// Если поле редактируемое, то обрабатываем изменение значения
+span.editable(
+  ref="editable"
+  v-if="contentEditable"
+  contenteditable
+  @input="onInput"
+  @keyup="onKeyUp"
+  @blur="cancelEdit"
+  :class="{ 'invalid': isValid === false, 'is_saved': isValid }"
+)
+// Иначе просто выводим входное значение
+span.editable(v-else ref="editable") {{ formatValue(value) }}

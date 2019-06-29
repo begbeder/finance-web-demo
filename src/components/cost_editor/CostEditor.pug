@@ -1,0 +1,46 @@
+div.cost-editor(v-if="tableData && tableData.rows.length")
+  // Шапка таблицы
+  .table-wrap.table-section-header
+    .table-container(ref="tableHeader" @scroll="syncScrollHandler")
+      .table-contents
+        .table-row
+          .table-cell.table-cell_fixed.table-cell_left(
+          :style="{ backgroundColor: tableData.tableQuery.tableColor.colorColumnsBase }")
+            span Статья
+          template(v-for="(headerItem, index) in sortedCellsHeader")
+            .table-cell.table-cell_fixed.table-cell_plan(
+            v-if="headerItem.columnType === 'plan'"
+            :key="headerItem.title"
+            :style="{ backgroundColor: headerItem.color }")
+              span(:tabIndex="index + 1") План
+
+            .table-cell(
+            v-else
+            :style="{ backgroundColor: headerItem.color }"
+            :key="headerItem.title")
+              span(:tabIndex="index + 1") {{ headerItem.title }}
+
+  // Контент таблицы
+  .table-wrap.table-section-content
+    .table-container(ref="tableContent" @scroll="syncScrollHandler")
+      .table-contents
+        // Контент таблицы
+        // Выводим список строк, исключая строку Итого
+        ul.table-group-list
+          template(v-for="(row, index) in tableData.rows")
+            table-row(
+              v-if="row.rowType !== 'total'"
+              :rowData="row"
+              :key="row.id"
+              :countSiblings="tableData.rows.length - 1"
+              :indexRow="index"
+            )
+
+  // Подвал таблицы
+  .table-wrap.table-section-footer
+    .table-container(ref="tableFooter" @scroll="syncScrollHandler")
+      .table-contents(v-if="totalRow")
+        // Строка вычисляемых значений - Итого
+        table-row(
+        :rowData="totalRow"
+        )

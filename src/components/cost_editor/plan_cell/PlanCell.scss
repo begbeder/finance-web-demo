@@ -1,0 +1,42 @@
+@import "../../../styles/variables";
+
+.plan-cell {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &__input {
+    flex: 1;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  &__btn {
+    position: absolute;
+    right: 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    background: $plan-btn-bg;
+    color: $plan-btn-color;
+
+    &.is-disabled {
+      background: $plan-btn-bg-disable;
+      color: $plan-btn-disable;
+      pointer-events: none;
+    }
+
+    &:hover {
+      background: $plan-btn-bg-hover;
+    }
+  }
+
+  .editable {
+    padding: $editable-plan-padding;
+  }
+}

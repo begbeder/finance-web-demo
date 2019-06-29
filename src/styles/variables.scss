@@ -1,0 +1,83 @@
+// глобальные
+$body-bg: #1d3144;
+$body-color: #fff;
+
+$sidebar-menu-bg: $body-bg;
+$sidebar-menu-color: $body-color;
+$sidebar-menu-f-size: 12px;
+
+$sidebar-menu-item-bg: #405365;
+
+$main-header-bg: $body-bg;
+$main-header-color: $body-color;
+
+$main-content-bg: #fff;
+$main-content-color: #000;
+
+$color-success: #499e0b;
+$color-error: #de2929;
+$color-secondary: #409eff;
+$color-disable: #f4f4f5;
+$text-color-disable: #bcbec2;
+
+// Контролы вложенности ячеек
+$control-bg: #53852f;
+$control-bg-hover: #689f38;
+$control-color: #fff;
+
+// Редактируемое поле
+$editable-border-saved: auto $color-success;
+$editable-border-invalid: auto $color-error;
+$editable-border-focus: auto $color-secondary;
+
+$editable-base-padding: 0 5px;
+$editable-plan-padding: 0 30px 0 5px;
+
+// Стили ячейки таблицы
+$cell-border-default: 1px solid rgb(238, 241, 246);
+$cell-border-focus: auto $color-secondary;
+$cell-height: 36px;
+$cell-lh-default: 32px;
+$cell-f-size: 13px;
+$cell-padding: 1px 1px;
+
+$cell-default-width: 110px;
+
+// Колонка названия статей.
+$cell-articlce-width: 300px;
+$cell-article-left: 0;
+$cell-articlce-padding: 1px 5px;
+
+$cell-plan-width: 130px;
+$cell-plan-left: 300px;
+
+// Цвет стандартной ошибки
+$cell-header-padding: 1px 1px;
+$cell-header-bg: #c1ca34;
+$cell-header-span-padding: $editable-base-padding;
+$cell-level-0-bg: #d4e056;
+$cell-level-0-bg: #dbe670;
+$cell-level-1-bg: #e6ee9b;
+$cell-level-2-bg: #f0f3c2;
+$cell-level-3-bg: #f0f3c2;
+$cell-editable-bg: #fff;
+$cell-footer-bg: #f6f7fa;
+
+// Цвет ячеек колонки план
+$cell-plan-header-bg: #9ccd64;
+$cell-plan-level-0-bg: #9ccd64;
+$cell-plan-level-0-bg: #afd582;
+$cell-plan-level-1-bg: #c2e2a1;
+$cell-plan-level-2-bg: #dceec8;
+$cell-plan-level-3-bg: #dceec8;
+
+// Компонент план
+$plan-btn-bg: $control-bg;
+$plan-btn-bg-hover: $control-bg-hover;
+$plan-btn-bg-disable: $color-disable;
+$plan-btn-color: #fff;
+$plan-btn-disable: $text-color-disable;
+
+// Контейнер таблицы
+$table-container-m-left: 430px; // Отступ слева равен ширине левой колонки
+

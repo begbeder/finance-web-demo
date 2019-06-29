@@ -1,0 +1,21 @@
+// Если поле редактируемое, то обрабатываем изменение значения
+div.plan-cell(v-if="contentEditable")
+  span.editable.plan-cell__input(
+  ref="editable"
+  contenteditable
+  tabIndex="1"
+  @input="onInput"
+  @keyup="onKeyUp"
+  @blur="cancelEdit"
+  :class="{ 'invalid': isValid === false, 'is_saved': isValid }"
+  )
+
+  span.plan-cell__btn(
+  title="Применить"
+  :class="{ 'is-disabled': isDisabled }"
+  @click="changeMode"
+  )
+    i.el-icon-arrow-right
+
+// Иначе просто выводим входное значение
+span.editable(v-else ref="editable" tabIndex="1") {{ formatValue(value) }}

@@ -1,0 +1,81 @@
+@import "../../styles/variables";
+
+// Строка таблицы
+$table-wrap-bg: #fff;
+.table {
+  &-wrap {
+    background: $table-wrap-bg;
+    position: relative;
+    * {
+      box-sizing: border-box;
+    }
+
+    &.table-section-header {
+      .table-container {
+        padding-bottom: 3px;
+      }
+      .table-cell {
+        background: $cell-header-bg;
+        border-top: $cell-border-default;
+        padding: $cell-header-padding;
+
+        span {
+          padding: $cell-header-span-padding;
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &.table-cell_plan {
+          background: $cell-plan-header-bg;
+        }
+      }
+    }
+    &.table-section-content {
+      overflow-y: scroll;
+      //max-height: 80vh;
+      max-height: calc(100vh - 225px);
+      margin-top: -20px;
+      margin-right: -16px;
+      margin-bottom: -18px;
+    }
+    &.table-section-footer {
+      margin-top: 0;
+
+      .table-cell {
+        background: $cell-footer-bg;
+        border-top: $cell-border-default;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &-container {
+    width: auto;
+    overflow-x:scroll;
+    margin-left: $table-container-m-left; // Отступ слева равен ширине левой колонки
+    overflow-y:visible;
+    padding-bottom: 1px;
+  }
+
+  &-contents {
+    display: table;
+  }
+
+  // Контейнер строки
+  &-group-list {
+    &,
+    &-item {
+      display: contents;
+    }
+
+    // ul ul
+    & & {
+      display: none;
+    }
+
+    .table-row_open + & {
+      display: contents;
+    }
+  }
+}

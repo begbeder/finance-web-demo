@@ -1,0 +1,57 @@
+el-form.budget-item-form(
+ref="budgetItemForm"
+:model="formDataLocal"
+:rules="rulesBudgetItemEditorForm"
+label-width="150px"
+)
+  // Название
+  el-form-item(label="Название статьи" prop="title")
+    el-input(
+    v-model="formDataLocal.title"
+    placeholder="Введите название"
+    auto-complete="off")
+
+  // Финансовый тип статьи - фиксированный или переменный.
+  el-form-item(
+  label="Финансовый тип"
+  prop="financeType"
+  )
+    el-select.select-item(
+    placeholder="Выберите тип статьи"
+    v-model="formDataLocal.budgetItemFinanceType"
+    value-key="label")
+      el-option(
+      v-for="option in financeTypeOptions"
+      :label="option.label"
+      :value="option.value"
+      :key="option.value")
+
+  // Тип статьи - отобрадается если тип не subTotal
+  el-form-item(
+  label="Тип статьи"
+  prop="type"
+  v-if="formDataLocal.type !== 'subTotal'")
+    el-select.select-item(
+    placeholder="Выберите тип статьи"
+    v-model="formDataLocal.type"
+    value-key="label")
+      el-option(
+      v-for="option in options"
+      :label="option.label"
+      :value="option.value"
+      :key="option.value")
+
+  // Если выбран тип формула - отображается текстовое поле с формулой
+  el-form-item(
+  label="Формула"
+  prop="calculated"
+  v-if="formDataLocal.type === 'calculated'"
+  )
+      el-input(
+      v-model="formDataLocal.formula"
+      placeholder="Введите формулу"
+      auto-complete="off")
+
+  // Цвет статьи
+  el-form-item(label="Цвет статьи" prop="color")
+    el-color-picker(v-model="formDataLocal.color")

@@ -1,0 +1,21 @@
+div
+  el-dialog(
+  title="Управление структурой таблицы"
+  :visible="visible"
+  @close="$emit('close')"
+  @open="updateBudgetTree"
+  width="800px"
+  )
+    el-tree(
+    :data="budgetItemsTree"
+    show-checkbox
+    node-key="id"
+    default-expand-all
+    :default-checked-keys="defaultCheckedKeys"
+    @check="handleCheckChange"
+    ref="budgetItemsTree"
+    )
+
+    span(slot="footer" class="dialog-footer")
+      el-button(@click="$emit('close')") Закрыть
+      el-button(type="primary" @click="saveChanges") Сохранить

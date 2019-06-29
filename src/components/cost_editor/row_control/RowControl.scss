@@ -1,0 +1,60 @@
+@import "../../../styles/variables";
+
+$bg-sprite: url("../../../assets/row_control_sprite.svg");
+.row-control {
+  $block-width: 20px;
+  $block-height: auto;
+  padding-right: 5px;
+  user-select: none;
+
+  display: inline-flex;
+  &__block {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: $block-width;
+    height: $block-height;
+    background-repeat: no-repeat;
+    color: transparent;
+
+    &.block-munis,
+    &.block-plus {
+      cursor: pointer;
+
+      span {
+        display: flex;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        background: $control-bg;
+        color: $control-color;
+        border-radius: 3px;
+
+        &:hover {
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          background: $control-bg-hover;
+        }
+      }
+    }
+
+    // Стили
+    &.block-line {
+      background-image: $bg-sprite;
+      background-position: -117px 0px;
+    }
+
+    &.block-elbow {
+      background-image: $bg-sprite;
+      background-position: -51px -22px;;
+    }
+
+    &.block-end {
+      background-image: $bg-sprite;
+      background-position: 9px -21px;
+    }
+  }
+}

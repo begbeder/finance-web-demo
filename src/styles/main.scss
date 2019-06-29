@@ -1,0 +1,26 @@
+@import "variables";
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: $body-bg;
+  color: $body-color;
+  overflow: hidden;
+}
+
+.main-header {
+  background-color: $main-header-bg;
+  color: $main-header-color;
+  display: flex;
+
+  &__user-block {
+    display: inline-flex;
+    margin-left: auto;
+  }
+}
+
+.main-container {
+  background-color: $main-content-bg;
+  color: $main-content-color;
+  border-radius: 2px;
+  // Фиксированная высота контейнера с прокруткой контента
+  height: calc(100vh - 60px);
+}

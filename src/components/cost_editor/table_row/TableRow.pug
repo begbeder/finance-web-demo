@@ -1,0 +1,59 @@
+li.table-group-list-item
+  // Ячейки строки таблицы
+  div.table-row(
+    v-if="rowData"
+    :class="{ 'table-row_open': rowIsOpen, 'table-row_has-children': rowHasChildren }"
+  )
+    // Колонка название
+    .table-cell.table-cell_fixed.table-cell_left(
+    :class="cellClass"
+    :style="{ background: rowData.color }"
+    :title="rowTitle")
+      // Контрол управления вложенностью таблицы
+      row-control(
+      :hasChildren="rowHasChildren"
+      :isOpen="rowIsOpen"
+      :level="levelRow"
+      :index="indexRow"
+      :countSiblings="countSiblings"
+      @changeOpen="toggleChildren"
+      )
+      | {{ rowTitle }}
+
+    template(v-for="(cell, cellIndex) in sortedCells")
+      // Колонка План
+      .table-cell.table-cell_fixed.table-cell_plan(
+      v-if="cell.cellType === 'plan' || (rowType === 'total' && cellIndex === 0)"
+      :style="{ background: cell.color }"
+      :key="cell.key"
+      :class="cellClass"
+      )
+        plan-cell(
+        :contentEditable="rowType === 'editable'"
+        :cell="cell"
+        )
+
+      // Колонка с редактируемым значением
+      .table-cell(
+      v-else
+      :style="{ background: cell.color }"
+      :key="cell.key"
+      :class="cellClass"
+      )
+        editable-cell(
+        :contentEditable="cell.cellType === 'editable'"
+        :tabIndex="cellIndex + 1"
+        :cell="cell"
+        :key="cell.id"
+        )
+
+  // Дочерние строки таблицы
+  ul.table-group-list(v-if="rowHasChildren")
+    template(v-for="(childRow, childIndex) in rowData.children")
+      table-row(
+      :rowData="childRow"
+      :key="childRow.id"
+      :levelRow="levelRow + 1"
+      :indexRow="childIndex"
+      :countSiblings="countChildren"
+      )

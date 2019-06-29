@@ -1,0 +1,15 @@
+// |
+// |-
+// |_
+// +
+// -
+.row-control
+  .row-control__block.block-line(v-for="i in level" :key="i") |
+  template(v-if="hasChildren")
+    .row-control__block.block-munis(v-if="isOpen" @click="$emit('changeOpen')")
+      span -
+    .row-control__block.block-plus(v-else @click="$emit('changeOpen')")
+      span +
+  template(v-else)
+    .row-control__block.block-elbow(v-if="index + 1 < countSiblings") |-
+    .row-control__block.block-end(v-if="index + 1 === countSiblings") |_

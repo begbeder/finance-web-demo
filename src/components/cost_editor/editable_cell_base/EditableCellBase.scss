@@ -1,0 +1,20 @@
+@import "../../../styles/variables";
+
+.editable {
+  display: block;
+  padding: $editable-base-padding;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &:focus {
+    outline: $editable-border-focus;
+  }
+
+  &.invalid {
+    outline: $editable-border-invalid;
+  }
+
+  &.is_saved {
+    outline: $editable-border-saved;
+  }
+}

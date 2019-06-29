@@ -1,0 +1,36 @@
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-right: 8px;
+}
+
+.tree-node {
+  flex-wrap: wrap;
+  width: calc(100% - 130px);
+  &__label {
+    overflow: hidden;
+    white-space: normal;
+    width: calc(100% - 230px);
+    text-overflow: ellipsis;
+
+    span {
+      white-space: nowrap;
+    }
+
+    .small-text {
+      color: #909399;
+      font-size: 12px;
+      padding-left: 10px;
+    }
+  }
+}
+
+.el-tree-node__content {
+  flex-wrap: wrap;
+  &_active {
+    background: #f5f7fa;
+  }
+}

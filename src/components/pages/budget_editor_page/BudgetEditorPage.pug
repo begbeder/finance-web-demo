@@ -1,0 +1,93 @@
+.home
+  // Шапка страницы
+  el-row(type="flex" align="middle")
+    el-col(:span="16")
+      h1 {{ $route.name }}
+    el-col(:span="8")
+      .button-wrap
+        el-button(
+        type="primary"
+        size="small"
+        @click="() => appendChild(null, null)"
+        ) Добавить статью
+
+
+  // Редактор статей
+  el-tree(
+  v-if="budgetItemsTree.length"
+  :data="budgetItemsTree"
+  node-key="id"
+  :default-expand-all="false"
+  draggable
+  @node-drop="handleDrop"
+  @node-drag-end="handleDragEnd"
+  @node-click="handleNodeClick"
+  :expand-on-click-node="true"
+  )
+    span.custom-tree-node.tree-node(slot-scope="{ node, data }" :id="data.id")
+      span.tree-node__label
+        span(:title="node.label")
+        | {{ node.label }}
+        span.small-text {{ node.data.id }}
+      span
+        el-button(
+        type="text"
+        size="mini"
+        @click.stop.prevent="() => appendChild(node, data)"
+        ) Добавить
+
+        el-button(
+        type="text"
+        size="mini"
+        @click.stop.prevent="() => editItem(node, data)"
+        ) Редактировать
+
+        el-button(
+        type="text"
+        size="mini"
+        @click.stop.prevent="() => showConfirmDialog(node)"
+        ) Удалить
+
+
+  // Окно редактирования данных статьи
+  el-dialog(
+  title="Редактирование статьи"
+  :visible.sync="budgetItemEditorVisible"
+  width="450px"
+  )
+    budget-item-form(
+    ref="budgetItemEditorForm"
+    :formData="budgetItemEditorForm")
+
+    span(slot="footer" class="dialog-footer")
+      el-button(@click="budgetItemEditorVisible = false") Отменить
+      el-button(type="primary" @click="saveChange") Сохранить
+
+
+  // Окно создания данных статьи
+  el-dialog(
+  title="Создание статьи"
+  :visible.sync="newBudgetItemEditorVisible"
+  width="450px"
+  )
+    budget-item-form(
+    ref="newBudgetItemEditorForm"
+    :formData="budgetItemEditorForm")
+
+    span(slot="footer" class="dialog-footer")
+      el-button(@click="newBudgetItemEditorVisible = false") Отменить
+      el-button(type="primary" @click="createItem") Сохранить
+
+
+
+  // Окно подтверждения удаления статьи.
+  el-dialog(
+  title="Внимание"
+  :visible.sync="confirmDialogIsVisible"
+  width="300px"
+  :before-close="hideConfirmDialog"
+  )
+    span Вы действительно хотите удалить статью?
+    span(slot="footer")
+      el-button(@click="removeItem" type="danger") Удалить
+      el-button(@click="hideConfirmDialog") Отменить

@@ -1,0 +1,94 @@
+@import "../../../styles/variables";
+
+.table {
+  &-row {
+    display: table-row;
+  }
+
+  // Общие стили ячейки
+  &-cell {
+    display: table-cell;
+    height: $cell-height;
+    border: $cell-border-default;
+    line-height: $cell-lh-default;
+    font-size: $cell-f-size;
+    padding: $cell-padding;
+    border-top: 0;
+    border-left: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &:focus {
+      outline: $cell-border-focus;
+    }
+
+    // Не фиксированная ячейка
+    &:not(.table-cell_fixed) {
+      min-width: $cell-default-width;
+      max-width: $cell-default-width;
+    }
+
+    // Фиксированная ячейка
+    &_fixed {
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      top: auto;
+    }
+
+    // Колонка крайняя слева (статья)
+    &_left {
+      width: $cell-articlce-width;
+      left: $cell-article-left;
+      border-left: $cell-border-default;
+      padding: $cell-articlce-padding;
+    }
+
+    // Колонка план
+    &_plan {
+      width: $cell-plan-width;
+      left: $cell-plan-left;
+      border-left: $cell-border-default;
+    }
+
+    &-level-0.table-cell_plan {
+      background: $cell-plan-level-0-bg;
+    }
+    &-level-1.table-cell_plan {
+      background: $cell-plan-level-1-bg;
+    }
+    &-level-2.table-cell_plan {
+      background: $cell-plan-level-2-bg;
+    }
+    &-level-3.table-cell_plan {
+      background: $cell-plan-level-3-bg;
+    }
+    //&-editable {
+    //  background: $cell-plan-editable-bg;
+    //}
+
+    &-level-0 {
+      background: $cell-level-0-bg;
+    }
+    &-level-1 {
+      background: $cell-level-1-bg;
+    }
+    &-level-2 {
+      background: $cell-level-2-bg;
+    }
+    &-level-3 {
+      background: $cell-level-3-bg;
+    }
+    &-editable {
+      background: $cell-editable-bg;
+    }
+  }
+}
+
+/* Отступы и стили для каждого уровня */
+// TODO Автоматизировать генерацию стилей для строк
+$level-1-bg: #ccc;
+$level-2-bg: #ddd;
+$level-3-bg: #eee;
+$level-4-bg: #fff;
